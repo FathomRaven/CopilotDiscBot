@@ -5,8 +5,7 @@ exports.run = (client, message, args) => {
     const embed = new MessageEmbed()
         //set color to a yellow color
         .setColor("#ffff00")
-        .setTitle("LOL")
-        .setDescription("L bozo")
+        .setTitle("L bozo")
         //Set image to a random item in gifs array
         .setImage(gifs[Math.floor(Math.random() * gifs.length)])
 
@@ -15,7 +14,7 @@ exports.run = (client, message, args) => {
 
 }
 
-gifs = 
+let gifs = 
 [
     "https://c.tenor.com/wIxFiobxxbIAAAAd/john-jonah-jameson-lol.gif",
     "https://c.tenor.com/w2mCAR7kgUsAAAAC/clash-royale-emotes.gif",

@@ -24,7 +24,7 @@ exports.run = (client, message, args) => {
     }
 }
 
-gifs =
+let gifs =
 [
     "https://c.tenor.com/vZPqW9KdENUAAAAC/teteshrek-mario.gif",
     "https://c.tenor.com/4ycY8k4g_lIAAAAC/luigi-belly-wobble.gif",
