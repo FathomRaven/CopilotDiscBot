@@ -33,7 +33,9 @@ let gifs =
     "https://c.tenor.com/wbjorBeCUAMAAAAC/luigi-home.gif",
     "https://c.tenor.com/ZnNyFinDe9MAAAAC/luigi-luigi-whistle.gif",
     "https://c.tenor.com/iR3MzE06ToYAAAAC/dunking-luigi.gif",
-    "https://c.tenor.com/mFxcE2A1nN0AAAAd/luigi-instant-sleeping.gif"
+    "https://c.tenor.com/mFxcE2A1nN0AAAAd/luigi-instant-sleeping.gif",
+    "https://c.tenor.com/Qy2ftrUMX2AAAAAd/gmod-garry.gif",
+    "https://c.tenor.com/zAQmbWFsawcAAAAC/se-murio-luigi.gif"
 
 ]
 
