@@ -1,7 +1,7 @@
 const usedCommand = new Set();
 
 exports.run = async (client, message, args) => {
-    if(usedCommand.has(message.author.id)) return message.reply("You can only use this command once every second");
+    if(usedCommand.has(message.author.id)) return message.reply("You can only use this command once 5 seconds");
     
     //If there are mentions, set the member to the first mention
     let member = message.mentions.members.first();
@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
     usedCommand.add(message.author.id);
     setTimeout(() => {
         usedCommand.delete(message.author.id);
-    }, 1000);
+    }, 5000);
 
     for (let i = 0; i < gifs.length; i++) {
         const element = gifs[i];
