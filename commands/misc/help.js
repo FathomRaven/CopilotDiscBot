@@ -3,8 +3,9 @@ const fs = require("fs");
 //Import messageEmbed from discord.js
 const { MessageEmbed } = require("discord.js");
 
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
     
+    //? If there are no arguments, list all the modules
     if(args.length == 0) {
         // Get the commands
         const commands = fs.readdirSync("./commands");
@@ -17,7 +18,7 @@ exports.run = (client, message, args) => {
         moduleList = "";
         // Loop through the commands
         for (const subdir of commands) {
-            const commandFiles = fs.readdirSync(`./commands/${subdir}`).filter(file => file.endsWith(".js"));
+            // const commandFiles = fs.readdirSync(`./commands/${subdir}`).filter(file => file.endsWith(".js"));
             moduleList += `**${subdir.toUpperCase()}**\n`;
 
         }
@@ -59,6 +60,7 @@ exports.run = (client, message, args) => {
         
         // Get the commands
         const commands = fs.readdirSync(`./commands/${modulename}`);
+        
         // Create a new MessageEmbed
         const embed = new MessageEmbed()
             .setColor(0x00AE86)
@@ -68,9 +70,7 @@ exports.run = (client, message, args) => {
 
         // Loop through the commands
         for (const file of commands) {
-            const commandName = file.split(".")[0];
             const command = require(`../${modulename}/${file}`);
-            // console.log(command);
 
             embed.addField(`${command.name}`, `${command.description}` + '\n' + `**Usage:**\n ${command.usage}`, true);
         }

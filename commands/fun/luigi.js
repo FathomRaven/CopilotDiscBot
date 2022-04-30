@@ -1,4 +1,8 @@
-exports.run = (client, message, args) => {
+const usedCommand = new Set();
+
+exports.run = async (client, message, args) => {
+    if(usedCommand.has(message.author.id)) return message.reply("You can only use this command once every second");
+    
     //If there are mentions, set the member to the first mention
     let member = message.mentions.members.first();
     //If the member is not valid, check for an id
@@ -10,11 +14,16 @@ exports.run = (client, message, args) => {
         }
     }
 
-    member.send("LUIGI TIME!").catch(err => {
+    await member.send("LUIGI TIME!").catch(err => {
         return message.channel.send("Could not send message to " + member.user.tag);
     });    
 
     message.channel.send("Deploying LUIGI...");
+
+    usedCommand.add(message.author.id);
+    setTimeout(() => {
+        usedCommand.delete(message.author.id);
+    }, 1000);
 
     for (let i = 0; i < gifs.length; i++) {
         const element = gifs[i];
