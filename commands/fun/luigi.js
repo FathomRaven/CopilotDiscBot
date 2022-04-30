@@ -1,29 +1,28 @@
 const usedCommand = new Set();
 
 exports.run = async (client, message, args) => {
-    if(usedCommand.has(message.author.id)) return message.reply("You can only use this command once 5 seconds");
+    if(usedCommand.has(message.author.id)) return message.reply("You can only use this command once 10 seconds");
     
-    //If there are mentions, set the member to the first mention
+    //Get the member
     let member = message.mentions.members.first();
     //If the member is not valid, check for an id
     if (!member) {
         //Get the member
-        member = message.guild.members.cache.get(args[0]);
-        if (!member) {
+        member = await message.guild.members.cache.get(args[0]);
+        if(!member)
             member = message.member;
-        }
     }
 
-    await member.send("LUIGI TIME!").catch(err => {
+    await member.send(`LUIGI TIME! You've been luigi-ed from ${message.author.tag}`).catch(err => {
         return message.channel.send("Could not send message to " + member.user.tag);
     });    
 
-    message.channel.send("Deploying LUIGI...");
+    message.channel.send(`Deploying LUIGI to ${member.user.tag}...`);
 
     usedCommand.add(message.author.id);
     setTimeout(() => {
         usedCommand.delete(message.author.id);
-    }, 5000);
+    }, 10000);
 
     for (let i = 0; i < gifs.length; i++) {
         const element = gifs[i];
