@@ -2,11 +2,16 @@ exports.run = (client, message, args) => {
     //Set the member to the author of the message
     let member = message.member;
 
+    if(!args[0])
+    {
+        client.autoreacts.delete(member.id);
+        return message.channel.send(`Autoreact removed!`);
+    }
+
     //Get the emoji argument
     let emoji = args[0];
     //If the emoji is not valid, check for an id
     if (!emoji) {
-        console.log("Testing");
         //Get the emoji
         emoji = message.guild.emojis.cache.get(args[0]);
         if (!emoji) {
@@ -42,6 +47,6 @@ exports.run = (client, message, args) => {
 }
 
 exports.name = "autoreact";
-exports.description = "Set to automatically react to a users message for an hour";
+exports.description = "Set to automatically react to a users message for an hour, use the command without arguments to remove the autoreact";
 exports.usage = "autoreact [emoji]";
 exports.aliases = ["ar", "react"];
