@@ -49,4 +49,4 @@ exports.run = (client, message, args) => {
 exports.name = "getwarns";
 exports.description = "Get a user's warns";
 exports.usage = "getwarns <user>";
-exports.aliases = ["warns", "gwarns"];
+exports.aliases = ["warns", "gwarns", "gw"];

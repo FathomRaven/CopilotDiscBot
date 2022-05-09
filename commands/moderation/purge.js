@@ -7,18 +7,27 @@ exports.run = (client, message, args) => {
         return message.channel.send("You do not have the permission to use this command!");
     }
 
-    amount = parseInt(args[0]) + 1;
+    amount = parseInt(args[0]);
 
-    //Check if the number of messages to purge is valid
-    if (amount > 100 || amount <= 0) return message.channel.send("Please specify a valid number of messages to purge");
     //Check if the arg is a number
-    if (isNaN(amount)) return message.channel.send("Please specify a valid number of messages to purge");
+    if (isNaN(amount) || amount <= 0 || amount > 1000) return message.channel.send("Please specify a valid number of messages to purge");
 
-    //Purge the amount of messages
-    message.channel.bulkDelete(amount).then(() => {
-        //Send a message to the channel
-        message.channel.send(`Purged ${amount - 1} messages!`);
-    });
+    if(amount < 100)
+        message.channel.bulkDelete(amount)
+    else
+    {
+        deleteIterations = Math.floor(amount / 100);
+        remainder = amount % 100;
+        for(i = 0; i < deleteIterations; i++)
+        {
+            message.channel.bulkDelete(100);
+        }
+        if(remainder > 0)
+            message.channel.bulkDelete(remainder);
+    }
+
+    //Send a message to the channel
+    message.channel.send(`Purged ${amount} messages!`);
 }
 
 exports.name = "purge";

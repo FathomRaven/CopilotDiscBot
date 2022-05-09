@@ -17,11 +17,13 @@ exports.run = (client, message, args) => {
     
     //If the member is not valid, check for an id
     if (!member) {
-        //Check if the id is valid
-        if (!args[0]) return message.channel.send("Please mention a valid member of this server");
         //Get the member
         member = message.guild.members.cache.get(args[0]);
     }
+
+    //If the member is not valid, return an error
+    if (!member) return message.channel.send("Please mention a valid member of this server");
+
     //Check if there is a reason
     if (!args[1]) return message.channel.send("Please provide a reason for the warning!");
     //Get the reason
