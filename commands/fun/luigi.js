@@ -25,7 +25,7 @@ exports.run = (client, message, args) => {
     usedCommand.add(message.author.id);
     setTimeout(() => {
         usedCommand.delete(message.author.id);
-    }, 1);
+    }, 10000);
 
     for (let i = 0; i < gifs.length; i++) {
         const element = gifs[i];
